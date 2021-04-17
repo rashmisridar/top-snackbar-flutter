@@ -29,11 +29,11 @@ void showTopSnackBar(
   Duration hideOutAnimationDuration = const Duration(milliseconds: 550),
   Duration displayDuration = const Duration(milliseconds: 3000),
   double additionalTopPadding = 16.0,
-  VoidCallback? onTap,
-  OverlayState? overlayState,
+  VoidCallback onTap,
+  OverlayState overlayState,
 }) async {
-  overlayState ??= Overlay.of(context);
-  late OverlayEntry overlayEntry;
+  overlayState = Overlay.of(context);
+  OverlayEntry overlayEntry;
   overlayEntry = OverlayEntry(
     builder: (context) {
       return TopSnackBar(
@@ -59,16 +59,16 @@ class TopSnackBar extends StatefulWidget {
   final hideOutAnimationDuration;
   final displayDuration;
   final additionalTopPadding;
-  final VoidCallback? onTap;
+  final VoidCallback onTap;
 
   TopSnackBar({
-    Key? key,
-    required this.child,
-    required this.onDismissed,
-    required this.showOutAnimationDuration,
-    required this.hideOutAnimationDuration,
-    required this.displayDuration,
-    required this.additionalTopPadding,
+    Key key,
+    this.child,
+    this.onDismissed,
+    this.showOutAnimationDuration,
+    this.hideOutAnimationDuration,
+    this.displayDuration,
+    this.additionalTopPadding,
     this.onTap,
   }) : super(key: key);
 
@@ -78,9 +78,9 @@ class TopSnackBar extends StatefulWidget {
 
 class _TopSnackBarState extends State<TopSnackBar>
     with SingleTickerProviderStateMixin {
-  late Animation offsetAnimation;
-  late AnimationController animationController;
-  double? topPosition;
+  Animation offsetAnimation;
+  AnimationController animationController;
+  double topPosition;
 
   @override
   void initState() {
@@ -131,9 +131,9 @@ class _TopSnackBarState extends State<TopSnackBar>
     return AnimatedPositioned(
       duration: widget.hideOutAnimationDuration * 1.5,
       curve: Curves.linearToEaseOut,
-      top: topPosition,
-      left: 16,
-      right: 16,
+      top: 0, //topPosition,
+      left: 0,
+      right: 0,
       child: SlideTransition(
         position: offsetAnimation as Animation<Offset>,
         child: SafeArea(
