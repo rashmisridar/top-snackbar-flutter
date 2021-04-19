@@ -5,19 +5,21 @@ import 'package:flutter/material.dart';
 /// Popup widget that you can use by default to show some information
 class CustomSnackBar extends StatefulWidget {
   final String message;
-  final Widget icon;
+  // final Widget icon;
   final Color backgroundColor;
   final TextStyle textStyle;
   final int iconRotationAngle;
+  final double height;
 
   const CustomSnackBar.success({
-    Key? key,
-    required this.message,
-    this.icon = const Icon(
+    Key key,
+    this.message,
+    this.height,
+    /* this.icon = const Icon(
       Icons.sentiment_very_satisfied,
       color: const Color(0x15000000),
       size: 120,
-    ),
+    ),*/
     this.textStyle = const TextStyle(
       fontWeight: FontWeight.w600,
       fontSize: 16,
@@ -28,13 +30,14 @@ class CustomSnackBar extends StatefulWidget {
   });
 
   const CustomSnackBar.info({
-    Key? key,
-    required this.message,
-    this.icon = const Icon(
+    Key key,
+    this.message,
+    this.height,
+    /*  this.icon = const Icon(
       Icons.sentiment_neutral,
       color: const Color(0x15000000),
       size: 120,
-    ),
+    ),*/
     this.textStyle = const TextStyle(
       fontWeight: FontWeight.w600,
       fontSize: 16,
@@ -45,13 +48,14 @@ class CustomSnackBar extends StatefulWidget {
   });
 
   const CustomSnackBar.error({
-    Key? key,
-    required this.message,
-    this.icon = const Icon(
+    Key key,
+    this.message,
+    this.height,
+    /*  this.icon = const Icon(
       Icons.error_outline,
       color: const Color(0x15000000),
       size: 120,
-    ),
+    ),*/
     this.textStyle = const TextStyle(
       fontWeight: FontWeight.w600,
       fontSize: 16,
@@ -70,10 +74,10 @@ class _CustomSnackBarState extends State<CustomSnackBar> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return Container(
-      height: 80,
+      height: widget.height,
       decoration: BoxDecoration(
         color: widget.backgroundColor,
-        borderRadius: BorderRadius.all(Radius.circular(12)),
+        // borderRadius: BorderRadius.all(Radius.circular(12)),
         boxShadow: [
           BoxShadow(
             color: Colors.black26,
@@ -94,7 +98,7 @@ class _CustomSnackBarState extends State<CustomSnackBar> {
                 height: 95,
                 child: Transform.rotate(
                   angle: widget.iconRotationAngle * pi / 180,
-                  child: widget.icon,
+                  //child: widget.icon,
                 ),
               ),
             ),
